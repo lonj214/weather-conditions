@@ -1,5 +1,6 @@
 const apiKey = "fe27a4ac1f7e47c2d9d5b18ee79cc084";
 // const apiUrl = "https://api.openweathermap.org/data/2.5/forecast?=&units=metric&q=";
+// I am getting an error; also need to delete my api key from the url below
 const apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=benicia,CA,840&appid=fe27a4ac1f7e47c2d9d5b18ee79cc084"
 
 const searchBox = document.querySelector(".search input");
@@ -16,6 +17,7 @@ async function checkWeather(city) {
         var data = await response.json();
 
         document.querySelector(".city").innerHTML = data.name;
+        // saying that temp is not defined
         document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
         document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
         document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
@@ -44,3 +46,5 @@ async function checkWeather(city) {
 searchBtn.addEventListener("click", () => {
     checkWeather(searchBox.value);
 })
+
+// TODO need to add this into local storage.
