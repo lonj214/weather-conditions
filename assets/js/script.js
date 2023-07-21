@@ -1,0 +1,46 @@
+const apiKey = "fe27a4ac1f7e47c2d9d5b18ee79cc084";
+// const apiUrl = "https://api.openweathermap.org/data/2.5/forecast?=&units=metric&q=";
+const apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=benicia,CA,840&appid=fe27a4ac1f7e47c2d9d5b18ee79cc084"
+
+const searchBox = document.querySelector(".search input");
+const searchBtn = document.querySelector(".search button");
+const weatherIcon = document.querySelector(".weather-icon");
+
+async function checkWeather(city) {
+    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+
+    if (response.status == 404) {
+        document.querySelector(".error").style.display = "block";
+        document.querySelector(".weather").style.display = "none";
+    } else {
+        var data = await response.json();
+
+        document.querySelector(".city").innerHTML = data.name;
+        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
+        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+        document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+
+        if (data.weather[0].main == "clouds") {
+            weatherIcon.src = "icons/clouds.png";
+        }
+        else if (data.weather[0].main == "clear") {
+            weatherIcon.src = "icons/clear.png";
+        }
+        else if (data.weather[0].main == "rain") {
+            weatherIcon.src = "icons/rain.png";
+        }
+        else if (data.weather[0].main == "drizzle") {
+            weatherIcon.src = "icons/drizzle.png";
+        }
+        else if (data.weather[0].main == "mist") {
+            weatherIcon.src = "icons/mist.png";
+        }
+
+        document.querySelector(".weather").style.display = "block";
+        document.querySelector(".error").style.display = "none";
+    }
+}
+
+searchBtn.addEventListener("click", () => {
+    checkWeather(searchBox.value);
+})
