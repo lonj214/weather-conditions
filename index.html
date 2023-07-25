@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weather Search Engine</title>
-  <link href="https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}" rel="stylesheet" />
+  <!-- <link href="https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}" rel="stylesheet" /> -->
   <!-- <link rel="stylesheet" href="./assets/css/jass.css"/> -->
   <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
@@ -43,6 +43,12 @@
       </div>
     </div>
   </div>
+  <div class="history">
+    <h2>Search History for <span id="city-text"></span></h2>
+    <div id="searchHistory-content"></div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
