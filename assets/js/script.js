@@ -1,6 +1,4 @@
 const apiKey = "fe27a4ac1f7e47c2d9d5b18ee79cc084";
-// const apiUrl = "https://api.openweathermap.org/data/2.5/forecast?=&units=metric&q=";
-// I am getting an error; also need to delete my api key from the url below
 
 
 const searchBox = document.querySelector(".search input");
@@ -20,7 +18,7 @@ async function checkWeather(city) {
         console.log(data)
 
         document.querySelector(".city").innerHTML = data.name;
-        // saying that temp is not defined
+  
         document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
         document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
         document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
@@ -47,8 +45,6 @@ async function checkWeather(city) {
     const forecastResponse = await fetch(forecastUrl);
 
     if (forecastResponse.status == 404) {
-        // document.querySelector(".error").style.display = "block";
-        // document.querySelector(".weather").style.display = "none";
         console.log("404error")
     } else {
         var forecast = await forecastResponse.json();
@@ -75,4 +71,5 @@ $(".search").each(function(){
     var id = $(this).attr("id")
     $(this).children("input").val(localStorage.getItem(id))
 })
-// TODO need to add this into local storage. There needs to be a section for the search history
+// TODO: Need to display the weather for the next 5 days.
+// TODO: Need the local storage to display on the browser as well
